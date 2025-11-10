@@ -166,65 +166,197 @@
 
 
 
-import * as THREE from 'three';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+// import * as THREE from 'three';
+// import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-let scene, camera, renderer, cube, controls;
+// let scene, camera, renderer, cube, controls;
 
-init();
-animate();
+// init();
+// animate();
 
-function init() {
-  // 1️⃣ Create scene
-  scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x202020);
+// function init() {
+//   // 1️⃣ Create scene
+//   scene = new THREE.Scene();
+//   scene.background = new THREE.Color(0x202020);
 
-  // 2️⃣ Create camera
-  camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-  camera.position.set(2, 2, 5);
+//   // 2️⃣ Create camera
+//   camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+//   camera.position.set(2, 2, 5);
 
-  // 3️⃣ Create renderer
-  renderer = new THREE.WebGLRenderer({ antialias: true });
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  document.body.appendChild(renderer.domElement);
+//   // 3️⃣ Create renderer
+//   renderer = new THREE.WebGLRenderer({ antialias: true });
+//   renderer.setSize(window.innerWidth, window.innerHeight);
+//   document.body.appendChild(renderer.domElement);
 
-  // 4️⃣ Add geometry (a simple cube)
-  const geometry = new THREE.BoxGeometry();
-  const material = new THREE.MeshStandardMaterial({ color: 0x00ff99 });
-  cube = new THREE.Mesh(geometry, material);
-  scene.add(cube);
+//   // 4️⃣ Add geometry (a simple cube)
+//   const geometry = new THREE.BoxGeometry();
+//   const material = new THREE.MeshStandardMaterial({ color: 0x00ff99 });
+//   cube = new THREE.Mesh(geometry, material);
+//   scene.add(cube);
 
-  // 5️⃣ Add light
-  const light = new THREE.DirectionalLight(0xffffff, 1);
-  light.position.set(5, 5, 5);
-  scene.add(light);
+//   // 5️⃣ Add light
+//   const light = new THREE.DirectionalLight(0xffffff, 1);
+//   light.position.set(5, 5, 5);
+//   scene.add(light);
 
-  // 6️⃣ Add orbit controls
-  controls = new OrbitControls(camera, renderer.domElement);
-  controls.enableDamping = true;  // smooth motion
-  controls.dampingFactor = 0.05;  // control smoothness
-  controls.enableZoom = true;     // allow zooming
-  controls.enablePan = true;      // allow panning
+//   // 6️⃣ Add orbit controls
+//   controls = new OrbitControls(camera, renderer.domElement);
+//   controls.enableDamping = true;  // smooth motion
+//   controls.dampingFactor = 0.05;  // control smoothness
+//   // controls.enableZoom = true;     // allow zooming
+//   controls.enablePan = true;      // allow panning
 
-  // 7️⃣ Handle window resizing
-  window.addEventListener('resize', onWindowResize);
-}
+//   // 7️⃣ Handle window resizing
+//   window.addEventListener('resize', onWindowResize);
+// }
 
-function onWindowResize() {
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
-}
+// function onWindowResize() {
+//   camera.aspect = window.innerWidth / window.innerHeight;
+//   camera.updateProjectionMatrix();
+//   renderer.setSize(window.innerWidth, window.innerHeight);
+// }
 
-function animate() {
-  requestAnimationFrame(animate);
+// function animate() {
+//   requestAnimationFrame(animate);
 
-  // rotate the cube slowly
-  cube.rotation.x += 0.01;
-  cube.rotation.y += 0.01;
+//   // rotate the cube slowly
+//   cube.rotation.x += 0.01;
+//   cube.rotation.y += 0.01;
 
-  // update the orbit controls
-  controls.update();
+//   // update the orbit controls
+//   controls.update();
 
-  renderer.render(scene, camera);
-}
+//   renderer.render(scene, camera);
+// }
+
+
+// import * as THREE from 'three';
+
+
+// const renderer = new THREE.WebGLRenderer();
+// renderer.setSize( window.innerWidth, window.innerHeight );
+// document.body.appendChild( renderer.domElement );
+
+// const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 500 );
+// camera.position.set( 0, 0, 100 );
+// camera.lookAt( 0, 0, 0 );
+
+// const scene = new THREE.Scene();
+
+// const material = new THREE.LineBasicMaterial( { color: 0x0000ff } );
+
+// const points = [];
+// points.push( new THREE.Vector3( - 10, 0, 0 ) );
+// points.push( new THREE.Vector3( 0, 10, 0 ) );
+// points.push( new THREE.Vector3( 10, 0, 0 ) );
+
+// const geometry = new THREE.BufferGeometry().setFromPoints( points );
+
+// const line = new THREE.Line( geometry, material );
+// scene.add( line );
+// renderer.render( scene, camera );
+
+
+// import * as THREE from 'three';
+
+// // Create scene
+// const scene = new THREE.Scene();
+
+// // Create a cube
+// const geometry = new THREE.BoxGeometry(1, 1, 1);
+// const material = new THREE.MeshStandardMaterial({ color: 0x00ff00 });
+// const cube = new THREE.Mesh(geometry, material);
+// scene.add(cube);
+
+// // Add ambient light
+// const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // white light, half intensity
+// scene.add(ambientLight);
+
+// // Add directional light
+// const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+// directionalLight.position.set(5, 5, 5);
+// scene.add(directionalLight);
+
+// // Set up camera
+// const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+// camera.position.z = 3;
+
+// // Renderer
+// const renderer = new THREE.WebGLRenderer();
+// renderer.setSize(window.innerWidth, window.innerHeight);
+// document.body.appendChild(renderer.domElement);
+
+// // Render loop
+// function animate() {
+//   requestAnimationFrame(animate);
+//   cube.rotation.x += 0.01;
+//   cube.rotation.y += 0.01;
+//   renderer.render(scene, camera);
+// }
+// animate();
+
+   import * as THREE from 'three'
+     import { FlyControls } from 'three/addons/controls/FlyControls.js';
+      // --- Scene setup ---
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x202020);
+
+      const camera = new THREE.PerspectiveCamera(
+        75,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        2000
+      );
+      camera.position.set(0, 10, 30);
+
+      const renderer = new THREE.WebGLRenderer({ antialias: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.body.appendChild(renderer.domElement);
+
+      // --- Lighting ---
+      const ambient = new THREE.AmbientLight(0xffffff, 0.4);
+      scene.add(ambient);
+
+      const pointLight = new THREE.PointLight(0xffffff, 1);
+      pointLight.position.set(50, 50, 50);
+      scene.add(pointLight);
+
+      // --- Add objects (cubes) ---
+      const geometry = new THREE.BoxGeometry(5, 5, 5);
+      const material = new THREE.MeshStandardMaterial({ color: 0x00ffcc });
+
+      for (let i = 0; i < 50; i++) {
+        const box = new THREE.Mesh(geometry, material);
+        box.position.set(
+          Math.random() * 400 - 200,
+          Math.random() * 200 - 100,
+          Math.random() * 400 - 200
+        );
+        scene.add(box);
+      }
+
+      // --- Fly Controls ---
+      const controls = new FlyControls(camera, renderer.domElement);
+      controls.movementSpeed = 50;      // how fast the camera moves
+      controls.rollSpeed = Math.PI / 12; // how fast it rolls/turns
+      controls.dragToLook = true;        // must hold left mouse to look
+      controls.autoForward = false;
+
+      // --- Resize handling ---
+      window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+
+      // --- Animation loop ---
+      const clock = new THREE.Clock();
+
+      function animate() {
+        requestAnimationFrame(animate);
+        const delta = clock.getDelta();
+        controls.update(delta);
+        renderer.render(scene, camera);
+      }
+
+      animate();
