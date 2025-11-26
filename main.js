@@ -1488,6 +1488,252 @@
 
 
 
+// import * as THREE from "three";
+// import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+
+// const scene = new THREE.Scene();
+
+// // Camera
+// const camera = new THREE.PerspectiveCamera(
+//   75,
+//   window.innerWidth / window.innerHeight,
+//   0.1,
+//   1000
+// );
+// camera.position.set(5, 5, 10);
+
+// // Renderer
+// const renderer = new THREE.WebGLRenderer();
+// renderer.setSize(window.innerWidth, window.innerHeight);
+// document.body.appendChild(renderer.domElement);
+
+// // -------------------------------
+// // MESH USING MESHSTANDARDMATERIAL
+// // -------------------------------
+
+// // Geometry
+// const geometry = new THREE.SphereGeometry(2, 32, 32);
+
+// // Material
+// const material = new THREE.MeshStandardMaterial({
+//   color: 0xff9900,   // orange
+//   metalness: 0.6,    // how metallic (0 to 1)
+//   roughness: 0.3     // how rough (0 → shiny, 1 → rough)
+// });
+
+// // Mesh
+// const sphere = new THREE.Mesh(geometry, material);
+// scene.add(sphere);
+
+// // ---------------------------------
+// // LIGHT (StandardMaterial requires)
+// // ---------------------------------
+
+// // Directional light
+// const dirLight = new THREE.DirectionalLight(0xffffff, 1);
+// dirLight.position.set(5, 10, 7);
+// scene.add(dirLight);
+
+// // Optional: Ambient soft light
+// const ambient = new THREE.AmbientLight(0x404040);
+// scene.add(ambient);
+
+// // Orbit Controls
+// const controls = new OrbitControls(camera, renderer.domElement);
+
+// // Animate
+// function animate() {
+//   requestAnimationFrame(animate);
+
+//   sphere.rotation.y += 0.01;
+
+//   renderer.render(scene, camera);
+// }
+// animate();
+
+
+
+// import * as THREE from "three";
+// import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+
+// const scene = new THREE.Scene();
+
+// // Camera
+// const camera = new THREE.PerspectiveCamera(
+//   75,
+//   window.innerWidth / window.innerHeight,
+//   0.1,
+//   100
+// );
+// camera.position.set(3, 3, 3);
+
+// // Renderer
+// const renderer = new THREE.WebGLRenderer({ antialias: true });
+// renderer.setSize(window.innerWidth, window.innerHeight);
+// renderer.shadowMap.enabled = true;   // ✅ Must enable shadows
+// document.body.appendChild(renderer.domElement);
+
+// // Orbit Controls
+// const controls = new OrbitControls(camera, renderer.domElement);
+
+// // Light
+// const light = new THREE.DirectionalLight(0xffffff, 1);
+// light.position.set(5, 5, 5);
+// light.castShadow = true;            // ✅ Light must cast shadows
+// scene.add(light);
+
+// // Cube (Casts Shadow)
+// const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
+// const cubeMaterial = new THREE.MeshStandardMaterial({ color: 0x00aaff });
+// const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+// cube.position.y = 0.5;
+// cube.castShadow = true;             // ✅ Cube casts shadow
+// scene.add(cube);
+
+// // Floor (Receives Shadow)
+// const planeGeometry = new THREE.PlaneGeometry(10, 10);
+// const planeMaterial = new THREE.MeshStandardMaterial({ color: 0xffffff });
+// const plane = new THREE.Mesh(planeGeometry, planeMaterial);
+// plane.rotation.x = -Math.PI / 2;
+// plane.receiveShadow = true;         // ✅ Floor receives shadow
+// scene.add(plane);
+
+// // Animation Loop
+// function animate() {
+//   requestAnimationFrame(animate);
+//   cube.rotation.y += 0.01;
+//   renderer.render(scene, camera);
+// }
+
+// animate();
+
+// // Resize
+// window.addEventListener("resize", () => {
+//   camera.aspect = window.innerWidth / window.innerHeight;
+//   camera.updateProjectionMatrix();
+//   renderer.setSize(window.innerWidth, window.innerHeight);
+// });
+
+
+// import * as THREE from "three";
+// import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+
+// const scene = new THREE.Scene();
+
+// // Camera
+// const camera = new THREE.PerspectiveCamera(
+//   75,
+//   window.innerWidth / window.innerHeight,
+//   0.1,
+//   100
+// );
+// camera.position.set(2, 2, 3);
+
+// // Renderer
+// const renderer = new THREE.WebGLRenderer({ antialias: true });
+// renderer.setSize(window.innerWidth, window.innerHeight);
+// document.body.appendChild(renderer.domElement);
+
+// // Controls
+// const controls = new OrbitControls(camera, renderer.domElement);
+
+// // 📌 TextureLoader
+// const loader = new THREE.TextureLoader();
+// const texture = loader.load("textures/brick.jpg");  // <-- Your image path
+
+// // Box with Texture
+// const boxGeo = new THREE.BoxGeometry(1, 1, 1);
+// const boxMat = new THREE.MeshStandardMaterial({
+//   map: texture,        // Apply texture here
+// });
+// const box = new THREE.Mesh(boxGeo, boxMat);
+// scene.add(box);
+
+// // Light
+// const light = new THREE.DirectionalLight(0xffffff, 1);
+// light.position.set(3, 3, 3);
+// scene.add(light);
+
+// // Animation
+// function animate() {
+//   requestAnimationFrame(animate);
+//   box.rotation.y += 0.01;
+//   renderer.render(scene, camera);
+// }
+// animate();
+
+
+// import * as THREE from "three";
+// import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+
+// const scene = new THREE.Scene();
+
+// // Camera
+// const camera = new THREE.PerspectiveCamera(
+//   75,
+//   window.innerWidth / window.innerHeight,
+//   0.1,
+//   100
+// );
+// camera.position.set(2, 2, 3);
+
+// // Renderer
+// const renderer = new THREE.WebGLRenderer({ antialias: true });
+// renderer.setSize(window.innerWidth, window.innerHeight);
+// document.body.appendChild(renderer.domElement);
+
+// // Controls
+// const controls = new OrbitControls(camera, renderer.domElement);
+
+// // ⭐ CubeTextureLoader – Load Skybox
+// const cubeTextureLoader = new THREE.CubeTextureLoader();
+
+// const skybox = cubeTextureLoader.load([
+//   "skybox/px.jpg",  // +X
+//   "skybox/nx.jpg",  // -X
+//   "skybox/py.jpg",  // +Y
+//   "skybox/ny.jpg",  // -Y
+//   "skybox/pz.jpg",  // +Z
+//   "skybox/nz.jpg"   // -Z
+// ]);
+
+// // Set as background
+// scene.background = skybox;
+
+// // Also use it as environment map (reflection)
+// scene.environment = skybox;
+
+// // ⭐ Metallic sphere (shows reflection)
+// const sphereGeo = new THREE.SphereGeometry(1, 32, 32);
+// const sphereMat = new THREE.MeshStandardMaterial({
+//   metalness: 1,
+//   roughness: 0,
+//   envMap: skybox
+// });
+// const sphere = new THREE.Mesh(sphereGeo, sphereMat);
+// scene.add(sphere);
+
+// // Light
+// const light = new THREE.DirectionalLight(0xffffff, 1);
+// light.position.set(3, 3, 3);
+// scene.add(light);
+
+// // Animation loop
+// function animate() {
+//   requestAnimationFrame(animate);
+//   sphere.rotation.y += 0.01;
+//   renderer.render(scene, camera);
+// }
+// animate();
+
+// // Resize
+// window.addEventListener("resize", () => {
+//   camera.aspect = window.innerWidth / window.innerHeight;
+//   camera.updateProjectionMatrix();
+//   renderer.setSize(window.innerWidth, window.innerHeight);
+// });
+
+
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
@@ -1498,55 +1744,53 @@ const camera = new THREE.PerspectiveCamera(
   75,
   window.innerWidth / window.innerHeight,
   0.1,
-  1000
+  100
 );
-camera.position.set(5, 5, 10);
+camera.position.set(2, 2, 3);
 
 // Renderer
-const renderer = new THREE.WebGLRenderer();
+const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
-// -------------------------------
-// MESH USING MESHSTANDARDMATERIAL
-// -------------------------------
+// Controls
+const controls = new OrbitControls(camera, renderer.domElement);
 
-// Geometry
-const geometry = new THREE.SphereGeometry(2, 32, 32);
+// ⭐ CompressedTextureLoader
+const loader = new THREE.CompressedTextureLoader();
 
-// Material
+// Load a compressed texture (example: .dds file)
+const texture = loader.load("textures/brick.dds");  
+// You can also load .ktx, .pvr, etc.
+// const texture = loader.load("textures/wood.ktx");
+// const texture = loader.load("textures/floor.pvr");
+
+// Create a material using the compressed texture
 const material = new THREE.MeshStandardMaterial({
-  color: 0xff9900,   // orange
-  metalness: 0.6,    // how metallic (0 to 1)
-  roughness: 0.3     // how rough (0 → shiny, 1 → rough)
+  map: texture,
 });
 
-// Mesh
-const sphere = new THREE.Mesh(geometry, material);
-scene.add(sphere);
+// Cube using compressed texture
+const cubeGeo = new THREE.BoxGeometry(1, 1, 1);
+const cube = new THREE.Mesh(cubeGeo, material);
+scene.add(cube);
 
-// ---------------------------------
-// LIGHT (StandardMaterial requires)
-// ---------------------------------
-
-// Directional light
-const dirLight = new THREE.DirectionalLight(0xffffff, 1);
-dirLight.position.set(5, 10, 7);
-scene.add(dirLight);
-
-// Optional: Ambient soft light
-const ambient = new THREE.AmbientLight(0x404040);
-scene.add(ambient);
-
-// Orbit Controls
-const controls = new OrbitControls(camera, renderer.domElement);
+// Light
+const light = new THREE.DirectionalLight(0xffffff, 1);
+light.position.set(3, 3, 3);
+scene.add(light);
 
 // Animate
 function animate() {
   requestAnimationFrame(animate);
-
-  sphere.rotation.y += 0.01;
-
+  cube.rotation.y += 0.01;
   renderer.render(scene, camera);
 }
 animate();
+
+// Resize
+window.addEventListener("resize", () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
