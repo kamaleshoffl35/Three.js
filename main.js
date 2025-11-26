@@ -1178,48 +1178,375 @@
 // animate();
 
 
+// import * as THREE from "three";
+// import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+
+// const scene = new THREE.Scene();
+
+// // Camera
+// const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+// camera.position.set(5, 5, 5);
+
+// // Renderer
+// const renderer = new THREE.WebGLRenderer({ antialias: true });
+// renderer.setSize(window.innerWidth, window.innerHeight);
+// document.body.appendChild(renderer.domElement);
+
+// // Controls
+// const controls = new OrbitControls(camera, renderer.domElement);
+
+// // 1. Create a mathematical plane
+// // (normal direction, constant)
+// const plane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
+// // This is a horizontal infinite plane at Y = 0
+
+// // 2. Create a PlaneHelper (size = 5 units)
+// const planeHelper = new THREE.PlaneHelper(plane, 5, 0xff0000);
+// scene.add(planeHelper);
+
+// // Add a cube for reference
+// const box = new THREE.Mesh(
+//   new THREE.BoxGeometry(1, 1, 1),
+//   new THREE.MeshStandardMaterial({ color: 0x00ff00 })
+// );
+// box.position.set(0, 0.5, 0);
+// scene.add(box);
+
+// // Light
+// const light = new THREE.DirectionalLight(0xffffff, 1);
+// light.position.set(3, 5, 2);
+// scene.add(light);
+
+// // Animate
+// function animate() {
+//   requestAnimationFrame(animate);
+//   renderer.render(scene, camera);
+// }
+// animate();
+
+// import * as THREE from "three";
+// import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+
+// const scene = new THREE.Scene();
+
+// // Camera
+// const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100);
+// camera.position.set(3, 3, 3);
+
+// // Renderer
+// const renderer = new THREE.WebGLRenderer({ antialias: true });
+// renderer.setSize(window.innerWidth, window.innerHeight);
+// document.body.appendChild(renderer.domElement);
+
+// // Controls
+// const controls = new OrbitControls(camera, renderer.domElement);
+
+// // Add Ambient Light
+// const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); 
+// // color = white, intensity = 0.5
+// scene.add(ambientLight);
+
+// // // Add another light to see shadows and highlights
+// const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+// directionalLight.position.set(5, 5, 5);
+// scene.add(directionalLight);
+
+// // Add an object
+// const box = new THREE.Mesh(
+//   new THREE.BoxGeometry(1, 1, 1),
+//   new THREE.MeshStandardMaterial({ color: 0x00ff88 })
+// );
+// scene.add(box);
+
+// // Animate
+// function animate() {
+//   requestAnimationFrame(animate);
+//   renderer.render(scene, camera);
+// }
+// animate();
+
+
+// import * as THREE from "three";
+// import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+
+// const scene = new THREE.Scene();
+
+// // Camera
+// const camera = new THREE.PerspectiveCamera(
+//   75,
+//   window.innerWidth / window.innerHeight,
+//   0.1,
+//   100
+// );
+// camera.position.set(3, 3, 5);
+
+// // Renderer
+// const renderer = new THREE.WebGLRenderer({ antialias: true });
+// renderer.setSize(window.innerWidth, window.innerHeight);
+// document.body.appendChild(renderer.domElement);
+
+// // Controls
+// const controls = new OrbitControls(camera, renderer.domElement);
+
+// // 🌈 Hemisphere Light
+// const hemiLight = new THREE.HemisphereLight(
+//   0x87ceeb, // Sky color (light blue)
+//   0x444444, // Ground color (dark gray)
+//   1.0       // Intensity
+// );
+// scene.add(hemiLight);
+
+// // Helper to visualize hemisphere light
+// const helper = new THREE.HemisphereLightHelper(hemiLight, 2);
+// scene.add(helper);
+
+// // Ground
+// const ground = new THREE.Mesh(
+//   new THREE.PlaneGeometry(10, 10),
+//   new THREE.MeshStandardMaterial({ color: 0x888888 })
+// );
+// ground.rotation.x = -Math.PI / 2;
+// scene.add(ground);
+
+// // Sphere to show lighting effect
+// const sphere = new THREE.Mesh(
+//   new THREE.SphereGeometry(1, 32, 32),
+//   new THREE.MeshStandardMaterial({ color: 0xff5533 })
+// );
+// sphere.position.y = 1;
+// scene.add(sphere);
+
+// // Animation loop
+// function animate() {
+//   requestAnimationFrame(animate);
+//   renderer.render(scene, camera);
+// }
+// animate();
+
+// import * as THREE from "three";
+// import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+
+// const scene = new THREE.Scene();
+
+// // Camera
+// const camera = new THREE.PerspectiveCamera(
+//   75,
+//   window.innerWidth / window.innerHeight,
+//   0.1,
+//   1000
+// );
+// camera.position.set(5, 5, 10);
+
+// // Renderer
+// const renderer = new THREE.WebGLRenderer();
+// renderer.setSize(window.innerWidth, window.innerHeight);
+// document.body.appendChild(renderer.domElement);
+
+// // ----------------------------
+// // LINE USING LINEBASICMATERIAL
+// // ----------------------------
+
+// // Create points
+// const points = [
+//   new THREE.Vector3(0, 0, 0),
+//   new THREE.Vector3(2, 3, 1),
+//   // new THREE.Vector3(5, 1, 0),
+// ];
+
+// // Convert to buffer geometry
+// const geometry = new THREE.BufferGeometry().setFromPoints(points);
+
+// // Material
+// const material = new THREE.LineBasicMaterial({
+//   color: 0xff0000,   // red
+//   linewidth: 1       // ignored in most browsers
+// });
+
+// // Line object
+// const line = new THREE.Line(geometry, material);
+// scene.add(line);
+
+// // Orbit Controls
+// const controls = new OrbitControls(camera, renderer.domElement);
+
+// // Animate
+// function animate() {
+//   requestAnimationFrame(animate);
+//   renderer.render(scene, camera);
+// }
+// animate();
+
+
+// lambertExample.js
+// import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js";
+
+// // Scene, camera, renderer
+// const scene = new THREE.Scene();
+// const camera = new THREE.PerspectiveCamera(
+//   75,
+//   window.innerWidth / window.innerHeight,
+//   0.1,
+//   1000
+// );
+
+// const renderer = new THREE.WebGLRenderer({ antialias: true });
+// renderer.setSize(window.innerWidth, window.innerHeight);
+// document.body.appendChild(renderer.domElement);
+
+// // Geometry
+// const geometry = new THREE.BoxGeometry(2, 2, 2);
+
+// // MeshLambertMaterial
+// const material = new THREE.MeshLambertMaterial({
+//   color: 0x00ff99, // greenish color
+// });
+
+// // Mesh
+// const cube = new THREE.Mesh(geometry, material);
+// scene.add(cube);
+
+// // Light (Lambert Material needs light!!)
+// const light = new THREE.PointLight(0xffffff, 1, 100);
+// light.position.set(10, 10, 10);
+// scene.add(light);
+
+// // Camera position
+// camera.position.z = 5;
+
+// // Animation
+// function animate() {
+//   requestAnimationFrame(animate);
+//   cube.rotation.x += 0.01;
+//   cube.rotation.y += 0.01;
+//   renderer.render(scene, camera);
+// }
+// animate();
+
+// import * as THREE from "three";
+// import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+
+// const scene = new THREE.Scene();
+
+// // Camera
+// const camera = new THREE.PerspectiveCamera(
+//   75,
+//   window.innerWidth / window.innerHeight,
+//   0.1,
+//   1000
+// );
+// camera.position.set(5, 5, 10);
+
+// // Renderer
+// const renderer = new THREE.WebGLRenderer();
+// renderer.setSize(window.innerWidth, window.innerHeight);
+// document.body.appendChild(renderer.domElement);
+
+// // ----------------------------
+// // MESH USING MESHPHONGMATERIAL
+// // ----------------------------
+
+// // Geometry (cube)
+// const geometry = new THREE.BoxGeometry(2, 2, 2);
+
+// // Material
+// const material = new THREE.MeshPhongMaterial({
+//   color: 0x00aaff,     // blue color
+//   shininess: 80,       // how shiny it looks
+//   specular: 0xffffff,  // specular highlight color
+// });
+
+// // Mesh
+// const cube = new THREE.Mesh(geometry, material);
+// scene.add(cube);
+
+// // ----------------------------
+// // LIGHT (Phong needs light!)
+// // ----------------------------
+
+// // Point light
+// const pointLight = new THREE.PointLight(0xffffff, 1.2);
+// pointLight.position.set(10, 10, 10);
+// scene.add(pointLight);
+
+// // Optional: Ambient light (soft global light)
+// const ambient = new THREE.AmbientLight(0x404040);
+// scene.add(ambient);
+
+// // Orbit Controls
+// const controls = new OrbitControls(camera, renderer.domElement);
+
+// // Animate
+// function animate() {
+//   requestAnimationFrame(animate);
+
+//   cube.rotation.x += 0.01;
+//   cube.rotation.y += 0.01;
+
+//   renderer.render(scene, camera);
+// }
+// animate();
+
+
+
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
 const scene = new THREE.Scene();
 
 // Camera
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.set(5, 5, 5);
+const camera = new THREE.PerspectiveCamera(
+  75,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  1000
+);
+camera.position.set(5, 5, 10);
 
 // Renderer
-const renderer = new THREE.WebGLRenderer({ antialias: true });
+const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
-// Controls
+// -------------------------------
+// MESH USING MESHSTANDARDMATERIAL
+// -------------------------------
+
+// Geometry
+const geometry = new THREE.SphereGeometry(2, 32, 32);
+
+// Material
+const material = new THREE.MeshStandardMaterial({
+  color: 0xff9900,   // orange
+  metalness: 0.6,    // how metallic (0 to 1)
+  roughness: 0.3     // how rough (0 → shiny, 1 → rough)
+});
+
+// Mesh
+const sphere = new THREE.Mesh(geometry, material);
+scene.add(sphere);
+
+// ---------------------------------
+// LIGHT (StandardMaterial requires)
+// ---------------------------------
+
+// Directional light
+const dirLight = new THREE.DirectionalLight(0xffffff, 1);
+dirLight.position.set(5, 10, 7);
+scene.add(dirLight);
+
+// Optional: Ambient soft light
+const ambient = new THREE.AmbientLight(0x404040);
+scene.add(ambient);
+
+// Orbit Controls
 const controls = new OrbitControls(camera, renderer.domElement);
-
-// 1. Create a mathematical plane
-// (normal direction, constant)
-const plane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
-// This is a horizontal infinite plane at Y = 0
-
-// 2. Create a PlaneHelper (size = 5 units)
-const planeHelper = new THREE.PlaneHelper(plane, 5, 0xff0000);
-scene.add(planeHelper);
-
-// Add a cube for reference
-const box = new THREE.Mesh(
-  new THREE.BoxGeometry(1, 1, 1),
-  new THREE.MeshStandardMaterial({ color: 0x00ff00 })
-);
-box.position.set(0, 0.5, 0);
-scene.add(box);
-
-// Light
-const light = new THREE.DirectionalLight(0xffffff, 1);
-light.position.set(3, 5, 2);
-scene.add(light);
 
 // Animate
 function animate() {
   requestAnimationFrame(animate);
+
+  sphere.rotation.y += 0.01;
+
   renderer.render(scene, camera);
 }
 animate();
